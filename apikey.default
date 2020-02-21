@@ -1,0 +1,4 @@
+<?php
+$apiKey='';
+$secretKey='';
+//申请地址：https://ai.baidu.com/

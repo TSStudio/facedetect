@@ -1,0 +1,10 @@
+<?php
+    //******** MYSQL SETTIONGS ********
+    $dbhost="localhost";
+    $dbport="3306";//DEFAULT 3306
+    $dbuser="";
+    $dbpawd="";
+    $dbname="facedetect";
+    
+    $dbhost=$dbhost.':'.$dbport;
+?>
