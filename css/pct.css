@@ -1,0 +1,32 @@
+﻿.BOX{
+    width:85%;
+    margin:10px auto 10px auto;
+    background-color:#CCCCCC;
+    padding-top:5px;
+    padding-bottom:5px;
+}
+.LINEBOX{
+    width:100%;
+    height:60px;
+    background-color:#888888;
+}
+.PERCENT{
+    height:60px;
+    background-color:#CC6622;
+    margin:0px auto 0px 0px;
+}
+*{
+    font-family:"Microsoft Yahei UI","Microsoft YaHei UI","Microsoft Yahei","Microsoft YaHei","榛戜綋","SimHei",sans-serif;
+}
+.LINEBOX-THIN{
+    width:100%;
+    height:20px;
+    background-color:#888888;
+}
+.PERCENT-THIN{
+    height:20px;
+    margin:0px auto 0px 0px;
+}
+*{
+    font-family:"Microsoft Yahei UI","Microsoft YaHei UI","Microsoft Yahei","Microsoft YaHei","榛戜綋","SimHei",sans-serif;
+}
