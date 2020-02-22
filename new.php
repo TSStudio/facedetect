@@ -66,10 +66,28 @@ $facetoken=$response["result"]["face_token"];
 $db=new mysqli($dbhost, $dbuser, $dbpawd, $dbname);
 $sql = 'INSERT INTO `face` (cname,faceid,face_token) values ("'.$_POST["name"].'","'.$faceid.'","'.$facetoken.'");';
 if(!$db->query($sql)){die(mysqli_error($db));}
-echo "人脸id:".$faceid;
-echo "<br>已成功录入<br>";
-echo '<img src="data:image/png;base64,'.$ph.'"/>';
 $logger->log("info","[".$_SESSION["fdun"]."]".$_POST["name"]."reged");
 $db->close();
 //会输出上面那两个信息和一个图片，在下面写html，把元素填进去就ok
 ?>
+<!DOCTYPE HTML>
+<html>
+    <head>
+    </head>
+    <body>
+        <h1>人脸注册结果</h1>
+            <div>
+                当前登录用户：<a id="UN"></a>
+                <a href="logout.php" class="link">登出</a>
+            </div>
+            <div>
+                上传的图片：<?='<img src="data:image/png;base64,'.$ph.'" width="30%"/>'?><br>
+                录入时名称:<?=$_POST["name"]?><br>
+                人脸id：<?=$faceid?>
+            </div>
+        <a href="newf.php">再注册一个</a><br>
+        <a href="index.html">首页</a>
+    </body>
+    <script>var type="mainp";</script>
+    <script src="js/check.js"></script>
+</html>

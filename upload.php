@@ -62,10 +62,28 @@ $sql = 'SELECT cname from `face` where faceid="'.$uid.'";';
 $res=$db->query($sql);
 if(!$res){die(mysqli_error());}
 $r=$res->fetch_array();
-echo "人脸id:".$uid."<br>";
-echo "录入时名称:".$r["cname"]."<br>";
-echo "相似度:".$sco."%";
 $logger->log("info","[".$_SESSION["fdun"]."]".$r["cname"]."searched");
 $db->close();
-//会输出上面那三个信息，在下面写html，把三个信息填进去就ok
 ?>
+<!DOCTYPE HTML>
+<html>
+    <head>
+    </head>
+    <body>
+        <h1>人脸搜索识别结果</h1>
+            <div>
+                当前登录用户：<a id="UN"></a>
+                <a href="logout.php" class="link">登出</a>
+            </div>
+            <div>
+                上传的图片：<?='<img src="data:image/png;base64,'.$ph.'" width="30%"/>'?><br>
+                识别结果：录入时名称:<?=$r["cname"]?><br>
+                相似度：<?=$sco?>%<br>
+                人脸id：<?=$uid?>
+            </div>
+        <a href="uploadf.php">再识别一个</a><br>
+        <a href="index.html">首页</a>
+    </body>
+    <script>var type="mainp";</script>
+    <script src="js/check.js"></script>
+</html>

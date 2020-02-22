@@ -13,7 +13,6 @@
         <div>
             当前登录用户：<a id="UN"></a>
             <a href="logout.php" class="link">登出</a>
-            <a href="reset.html" class="link">更改密码</a>
         </div>
         <form action="new.php" method="post" enctype="multipart/form-data">
             <label for="file">选择一个文件(jpg/png)</label>
