@@ -12,7 +12,7 @@ class logger{
      */
     public function log($level,$info){
         $time=time();
-        if($this->db->query('INSERT INTO `logs` (time,level,info) values ('.$time.',"'.$leve.'","'.$info.'")')){
+        if($this->db->query('INSERT INTO `logs` (time,level,info) values ('.$time.',"'.$level.'","'.$info.'")')){
             return true;
         }
         return false;

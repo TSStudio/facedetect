@@ -3,7 +3,7 @@ xmlhttp.onreadystatechange=function(){
     if(xmlhttp.readyState==4&&xmlhttp.status==200){
         console.log("Successfully GET LOGIN INFO");
         response=JSON.parse(xmlhttp.responseText);
-        if(type="mainp"){
+        if(type=="mainp"){
             if(response["isLogged"]==false){
                 window.location.href="login.html";
             }else{
@@ -11,7 +11,7 @@ xmlhttp.onreadystatechange=function(){
             }
             return;
         }
-        if(type='prelogin'){
+        if(type=='prelogin'){
             if(response["isLogged"]==true){
                 window.location.href="index.html";
             }

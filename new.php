@@ -1,6 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION["fdun"])){
+    header('Location:login.html');
     die("未登录");
 }
 
@@ -68,7 +69,7 @@ if(!$db->query($sql)){die(mysqli_error($db));}
 echo "人脸id:".$faceid;
 echo "<br>已成功录入<br>";
 echo '<img src="data:image/png;base64,'.$ph.'"/>';
-$logger->log("info","[".$_SESSION["fdun"]."]".$_POST["cname"]."reged");
+$logger->log("info","[".$_SESSION["fdun"]."]".$_POST["name"]."reged");
 $db->close();
 //会输出上面那两个信息和一个图片，在下面写html，把元素填进去就ok
 ?>

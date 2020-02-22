@@ -1,14 +1,19 @@
 <html>
     <head>
+        <meta charset="utf-8">
         <script src="https://ssl.captcha.qq.com/TCaptcha.js" async></script>
     </head>
     <body>
+        <h1>登录</h1>
         <form action="loginprocess.php" method="post" onsubmit="return check()" style="margin:auto;" class="reg info-input" id="input-form">
-        用户名<input type="text" name="username" id="username" class="input-box">
-        密码<input type="password" name="password" id="password" class="input-box">
-        验证码<button id="TencentCaptcha" type="button" class="button button-action" data-appid="2010598725" data-cbfn="subm">验证</button>
+        用户名<input type="text" name="username" id="username" class="input-box"><br>
+        密码<input type="password" name="password" id="password" class="input-box"><br>
+        验证码<button id="TencentCaptcha" type="button" class="button button-action" data-appid="2010598725" data-cbfn="subm">验证</button><br>
         <input type="text" style="display:none;" id="capti" name="ticket">
         <input type="text" style="display:none;" id="captr" name="randstr">
+        <input type="submit" id="subbutt" name="submit" value="提交">
+        </form>
+        <a href="register.html">注册</a>
     </body>
     <script type="text/javascript">
     window.subm = function(res){
@@ -59,4 +64,6 @@
         } 
     } 
     </script>
+    <script>var type="prelogin";</script>
+    <script src="js/check.js"></script>
 </html>

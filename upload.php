@@ -1,6 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION["fdun"])){
+    header('Location:login.html');
     die("未登录");
 }
 
