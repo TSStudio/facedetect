@@ -1,5 +1,9 @@
 <?php
-//请到60行查看相关信息
+session_start();
+if(!isset($_SESSION["fdun"])){
+    die("未登录");
+}
+
 header("Content-type: text/html; charset=utf-8");
 if($_FILES["file"]["error"]>0){
     echo "ERR:".$_FILES["file"]["error"];
@@ -40,15 +44,18 @@ $response=$client->search($ph, $imageType, "c", $options);
 //echo "<pre>";
 //var_dump($response);
 //echo "</pre>";
+//连接数据库
+//新建用户
+include "server-info.php";
+include "log.php";
+$logger=new logger($dbhost, $dbuser, $dbpawd, $dbname);
 if($response["error_code"]!=0){
     echo "ERR:".$response["error_msg"];
+    $logger->log("err",$response["error_msg"]);
     die();
 }
 $uid=$response["result"]["user_list"][0]["user_id"];
 $sco=$response["result"]["user_list"][0]["score"];
-//连接数据库
-//新建用户
-include "server-info.php";
 $db=new mysqli($dbhost, $dbuser, $dbpawd, $dbname);
 $sql = 'SELECT cname from `face` where faceid="'.$uid.'";';
 $res=$db->query($sql);
@@ -57,6 +64,7 @@ $r=$res->fetch_array();
 echo "人脸id:".$uid."<br>";
 echo "录入时名称:".$r["cname"]."<br>";
 echo "相似度:".$sco."%";
+$logger->log("info","[".$_SESSION["fdun"]."]".$r["cname"]."searched");
 $db->close();
 //会输出上面那三个信息，在下面写html，把三个信息填进去就ok
 ?>

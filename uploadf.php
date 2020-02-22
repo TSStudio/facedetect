@@ -6,7 +6,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Face Upload</title>
+        <title>Facedetect - Upload</title>
     <head>
     <body>
         <h1>人脸搜索</h1>

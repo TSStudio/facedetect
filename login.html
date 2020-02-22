@@ -1,11 +1,62 @@
-<!--登录界面
-用户名，密码，和一个验证码按钮（腾讯验证码接入）
-文档：https://007.qq.com/web-access.html
-一个链接，指向register.html
-
-post到loginprocess.php
-post参数名字：
-用户名：username
-密码：password
-验证码票据：ticket
--->
+<html>
+    <head>
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js" async></script>
+    </head>
+    <body>
+        <form action="loginprocess.php" method="post" onsubmit="return check()" style="margin:auto;" class="reg info-input" id="input-form">
+        用户名<input type="text" name="username" id="username" class="input-box">
+        密码<input type="password" name="password" id="password" class="input-box">
+        验证码<button id="TencentCaptcha" type="button" class="button button-action" data-appid="2010598725" data-cbfn="subm">验证</button>
+        <input type="text" style="display:none;" id="capti" name="ticket">
+        <input type="text" style="display:none;" id="captr" name="randstr">
+    </body>
+    <script type="text/javascript">
+    window.subm = function(res){
+        console.log(res)
+        if(res.ret === 0){
+            yz=true;
+            ticke=res.ticket;
+            rands=res.randstr;
+        }
+    }
+    var form = document.getElementById('input-form');
+    var go = document.getElementById('subbutt');
+    go.onclick = function(){
+        if(!yz){
+            alert('请完成验证');
+        }
+        var cap = document.getElementById('capti');
+        var car = document.getElementById('captr');
+        cap.value=window.ticke;
+        car.value=window.rands;
+        form.submit();
+    }
+    document.onkeydown=function(event){ 
+    var e = event || window.event || arguments.callee.caller.arguments[0]; 
+        if(e && e.keyCode==13){ // 按 Enter 
+            if(!yz){
+                alert('请完成验证');
+            }
+            var cap = document.getElementById('capti');
+            var car = document.getElementById('captr');
+            cap.value=window.ticke;
+            car.value=window.rands;
+            form.submit();
+        }
+    };
+    function check() { 
+        var username=document.getElementById("username").value; 
+        var password=document.getElementById("password").value; 
+        var regex=/^[/s]+$/; 
+        var szReg=/^[A-Za-z0-9d]+([-_.][A-Za-z0-9d]+)*@([A-Za-z0-9d]+[-.])+[A-Za-zd]{2,5}$/;
+        if(regex.test(username)||username.length==0){ 
+            alert("用户名不合法"); 
+            return false; 
+        } 
+        if(regex.test(password)||password.length==0){ 
+            alert("密码不合法"); 
+            return false;     
+        } 
+    } 
+    </script>
+</html>

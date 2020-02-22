@@ -1,4 +1,9 @@
 <?php
+session_start();
+if(!isset($_SESSION["fdun"])){
+    die("未登录");
+}
+
 header("Content-type: text/html; charset=utf-8");
 if($_FILES["file"]["error"]>0){
     echo "ERR:".$_FILES["file"]["error"];
@@ -45,20 +50,25 @@ $response=$client->addUser($ph, $imageType, "c", $faceid, $options);
 //echo "<pre>";
 //var_dump($response);
 //echo "</pre>";
+include "server-info.php";
+include "log.php";
+$logger=new logger($dbhost, $dbuser, $dbpawd, $dbname);
 if($response["error_code"]!=0){
     echo "ERR:".$response["error_msg"];
+    $logger->log("err",$response["error_msg"]);
     die();
 }
 $facetoken=$response["result"]["face_token"];
 //连接数据库
 //新建用户
-include "server-info.php";
+
 $db=new mysqli($dbhost, $dbuser, $dbpawd, $dbname);
 $sql = 'INSERT INTO `face` (cname,faceid,face_token) values ("'.$_POST["name"].'","'.$faceid.'","'.$facetoken.'");';
 if(!$db->query($sql)){die(mysqli_error($db));}
 echo "人脸id:".$faceid;
 echo "<br>已成功录入<br>";
 echo '<img src="data:image/png;base64,'.$ph.'"/>';
+$logger->log("info","[".$_SESSION["fdun"]."]".$_POST["cname"]."reged");
 $db->close();
 //会输出上面那两个信息和一个图片，在下面写html，把元素填进去就ok
 ?>
