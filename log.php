@@ -3,7 +3,6 @@ class logger{
     private $db;
     function __construct($dbhost, $dbuser, $dbpawd, $dbname){
         $this->db=new mysqli($dbhost, $dbuser, $dbpawd, $dbname);
-        $this->log("info","A Logger Connected");
     }
     /**
      * @param $level Logging level
